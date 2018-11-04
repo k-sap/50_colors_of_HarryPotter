@@ -22,7 +22,7 @@ frame2point <- function(f) {
   dim(picture) <- c(dim(picture)[1] * dim(picture)[2], dim(picture)[3])
   picture <- t(rgb2hsv(t(picture), maxColorValue=1))
   # wyznaczanie centrow
-  if (length(unique(picture)) > 50) {
+  if (nrow(unique(picture, MARGIN=1)) > 35) {
     picture <- kmeans(picture, centers=35, iter.max=10)
     # wyznaczanie najpopularniejszego punktu
     point <- picture$centers[which.max(picture$size), ]
